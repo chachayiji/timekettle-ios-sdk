@@ -29,6 +29,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          VERSION="${GITHUB_REF_NAME#v}"
+          ZIP_NAME="TKTranslateSDK-${VERSION}.xcframework.zip"
+
           RELEASE_DIR="$(pwd)/.release-worktree"
           rm -rf "$RELEASE_DIR"
 
@@ -45,6 +48,7 @@ jobs:
           rm -rf "$RELEASE_DIR"/*
           mkdir -p "$RELEASE_DIR"
           cp -R "TKTranslateSDK.xcframework" "$RELEASE_DIR/"
+          ditto -c -k --sequesterRsrc --keepParent TKTranslateSDK.xcframework "$RELEASE_DIR/${ZIP_NAME}"
           printf "TKTranslateSDK XCFramework\n\nTag: %s\n" "${GITHUB_REF_NAME}" > "$RELEASE_DIR/README.md"
 
           pushd "$RELEASE_DIR"

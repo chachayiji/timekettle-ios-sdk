@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :text => "MIT" }
   s.author       = { "Timekettle" => "support@timekettle.co" }
 
-  s.source       = { :git => "https://github.com/chachayiji/timekettle-ios-sdk.git", :tag => "v#{s.version}" }
+  s.source       = { :http => "https://raw.githubusercontent.com/chachayiji/timekettle-ios-sdk/release/TKTranslateSDK-#{s.version}.xcframework.zip" }
   s.vendored_frameworks = "TKTranslateSDK.xcframework"
   s.static_framework = true
 
@@ -16,4 +16,5 @@ Pod::Spec.new do |s|
   s.swift_version = "5.0"
 
   s.dependency "Moya", "~> 15.0"
+  s.dependency "Alamofire", "~> 5.9"
 end
