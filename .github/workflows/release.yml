@@ -48,11 +48,20 @@ jobs:
         run: |
           ditto -c -k --sequesterRsrc --keepParent TKTranslateSDK.xcframework TKTranslateSDK.xcframework.zip
 
+      - name: CocoaPods Lint (binary)
+        run: |
+          pod spec lint TKTranslateSDK/TKTranslateSDK.podspec --allow-warnings
+
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: TKTranslateSDK.xcframework.zip
           generate_release_notes: true
+
+      - name: Print Release Asset URL
+        run: |
+          echo "Release asset URL:"
+          echo "https://github.com/chachayiji/timekettle-ios-sdk/releases/download/${GITHUB_REF_NAME}/TKTranslateSDK.xcframework.zip"
 
       - name: Install CocoaPods
         run: sudo gem install cocoapods -N
