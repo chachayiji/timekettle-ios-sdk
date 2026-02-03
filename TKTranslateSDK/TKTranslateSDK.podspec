@@ -15,6 +15,4 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "12.0"
   s.swift_version = "5.0"
 
-  s.dependency "Moya", "~> 15.0"
-  s.dependency "Alamofire", "~> 5.9"
 end
