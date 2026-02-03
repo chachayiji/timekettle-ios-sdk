@@ -27,5 +27,16 @@ jobs:
 
       - name: SDK Unit Tests (SwiftPM)
         run: |
-          cd TKTranslateSDK
-          swift test
+          xcodebuild \
+            -workspace TKTranslateSDK/.swiftpm/xcode/package.xcworkspace \
+            -scheme TKTranslateSDK \
+            -destination 'platform=macOS' \
+            -enableCodeCoverage YES \
+            -resultBundlePath TKTranslateSDKTests.xcresult \
+            test
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: TKTranslateSDKTests.xcresult
+          path: TKTranslateSDKTests.xcresult
