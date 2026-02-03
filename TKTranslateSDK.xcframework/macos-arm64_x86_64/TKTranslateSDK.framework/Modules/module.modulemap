@@ -1,0 +1,5 @@
+framework module TKTranslateSDK {
+  umbrella header "TKTranslateSDK.h"
+  export *
+  module * { export * }
+}
