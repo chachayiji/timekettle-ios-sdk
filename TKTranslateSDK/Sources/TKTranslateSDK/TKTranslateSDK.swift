@@ -13,7 +13,7 @@ public enum TKTranslateSDK {
 
     /// Returns supported language codes.
     public static func supportedLanguages() -> [String] {
-        return ["en", "zh", "ja", "ko", "fr", "de", "es"]
+        return ["en", "zh", "ja", "ko", "fr", "de", "es","ru"]
     }
 
     /// Naive language detection based on ASCII presence.

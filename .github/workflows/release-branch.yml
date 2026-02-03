@@ -1,0 +1,56 @@
+name: Publish XCFramework to Release Branch
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Build XCFramework
+        run: ./TKTranslateSDK/scripts/build_xcframework.sh
+
+      - name: Publish to release branch
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          RELEASE_DIR="$(pwd)/.release-worktree"
+          rm -rf "$RELEASE_DIR"
+
+          if git ls-remote --exit-code --heads origin release >/dev/null 2>&1; then
+            git worktree add -B release "$RELEASE_DIR" origin/release
+          else
+            git worktree add --detach "$RELEASE_DIR"
+            pushd "$RELEASE_DIR"
+            git checkout --orphan release
+            git rm -rf . >/dev/null 2>&1 || true
+            popd
+          fi
+
+          rm -rf "$RELEASE_DIR"/*
+          mkdir -p "$RELEASE_DIR"
+          cp -R "TKTranslateSDK.xcframework" "$RELEASE_DIR/"
+          printf "TKTranslateSDK XCFramework\n\nTag: %s\n" "${GITHUB_REF_NAME}" > "$RELEASE_DIR/README.md"
+
+          pushd "$RELEASE_DIR"
+          git add .
+          git commit -m "Publish ${GITHUB_REF_NAME}" || echo "No changes to commit"
+          git push origin release --force-with-lease
+          popd
+
+          git worktree remove "$RELEASE_DIR" --force
