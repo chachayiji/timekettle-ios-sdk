@@ -1,3 +1,3 @@
 TKTranslateSDK XCFramework
 
-Tag: v1.0.2
+Tag: v1.0.3
