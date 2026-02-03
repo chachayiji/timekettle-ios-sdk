@@ -1,0 +1,14 @@
+.DS_Store
+.build/
+Pods/
+TKTranslateSDK.xcframework/
+TKTranslateSDKTests.xcresult/
+DerivedData/
+*.xcresult
+*.xcuserstate
+*.xcuserdata
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/

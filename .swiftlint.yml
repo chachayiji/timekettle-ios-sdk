@@ -1,0 +1,19 @@
+disabled_rules:
+  - trailing_whitespace
+  - line_length
+
+opt_in_rules:
+  - explicit_init
+  - empty_count
+  - first_where
+  - sorted_imports
+
+included:
+  - TKTranslateSDK/Sources
+  - TKTranslateSDK/Tests
+  - TKTranslateSDKDemo
+
+excluded:
+  - Pods
+  - TKTranslateSDK.xcframework
+  - TKTranslateSDKTests.xcresult
