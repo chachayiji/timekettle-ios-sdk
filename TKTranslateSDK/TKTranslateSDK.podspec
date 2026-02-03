@@ -11,8 +11,7 @@ Pod::Spec.new do |s|
   s.vendored_frameworks = "TKTranslateSDK.xcframework"
   s.static_framework = true
 
-  s.ios.deployment_target = "15.0"
-  s.osx.deployment_target = "12.0"
+  s.platform = :ios, "15.0"
   s.swift_version = "5.0"
 
 end
