@@ -26,7 +26,7 @@ jobs:
           VERSION="${GITHUB_REF_NAME#v}"
           git fetch origin main
           git checkout -B main origin/main
-          perl -0pi -e "s/(s\\.version\\s*=\\s*)'[^']*'/\\1'${VERSION}'/g" TKTranslateSDK/TKTranslateSDK.podspec
+          ruby -i -pe "gsub(/(s\\.version\\s*=\\s*)(['\\\"]).*?\\2/, \"\\\\1\\\\2${VERSION}\\\\2\")" TKTranslateSDK/TKTranslateSDK.podspec
           if ! git diff --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
