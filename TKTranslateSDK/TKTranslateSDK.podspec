@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TKTranslateSDK"
-  s.version      = "1.0.10"
+  s.version      = "1.0.11"
   s.summary      = "TKTranslateSDK"
   s.description  = "A lightweight translation SDK skeleton."
   s.homepage     = "https://github.com/chachayiji/timekettle-ios-sdk"
