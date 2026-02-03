@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :text => "MIT" }
   s.author       = { "Timekettle" => "support@timekettle.co" }
 
-  s.source       = { :http => "https://raw.githubusercontent.com/chachayiji/timekettle-ios-sdk/release/TKTranslateSDK-#{s.version}.xcframework.zip" }
+  s.source       = { :http => "https://github.com/chachayiji/timekettle-ios-sdk/releases/download/v#{s.version}/TKTranslateSDK.xcframework.zip" }
   s.vendored_frameworks = "TKTranslateSDK.xcframework"
   s.static_framework = true
 
